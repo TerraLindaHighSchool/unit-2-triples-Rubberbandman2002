@@ -52,7 +52,7 @@ public class CardTest {
     }
 
     @Test
-    //getIsSelected test
+    //getIsSelected test and  setIsSelected test
     public void setIsSelected()  {
         c = new Card(Card.Shape.NO_SHAPE, Card.Color.NO_COLOR, -1, -1, false);
         boolean expectedValue = true;
