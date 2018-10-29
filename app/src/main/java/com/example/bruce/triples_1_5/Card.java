@@ -1,10 +1,11 @@
 package com.example.bruce.triples_1_5;
 
+
+
 public class Card {
     private Shape mShape;
     private Color mColor;
-    private int  mNum;
-    private int mAlpha;
+    private int  mNum, mAlpha, mImage, mSelectedImg;
     private boolean mIsSelected = false;
 
     /*****************************************************
@@ -15,15 +16,17 @@ public class Card {
     }
 
     protected enum Color{
-        RED, BLUE, YELLOW, NO_COLOR
+        RED, BLUE, GREEN, NO_COLOR
     }
 
-    public Card( Shape shape, Color color, int alpha, int num, boolean isSelected) {
+    public Card( Shape shape, Color color, int alpha, int num, boolean isSelected, int image, int selectedImg) {
         mShape = shape;
         mColor = color;
         mAlpha = alpha;
         mNum = num;
         mIsSelected = isSelected;
+        mImage = image;
+        mSelectedImg = selectedImg;
 }
 
     /******************************************************
@@ -54,6 +57,13 @@ public class Card {
         return mIsSelected;
     }
 
+    public int getImage() {
+        return mImage;
+    }
+
+    public int getSelectedImg() {
+        return mSelectedImg;
+    }
 }
 
 
