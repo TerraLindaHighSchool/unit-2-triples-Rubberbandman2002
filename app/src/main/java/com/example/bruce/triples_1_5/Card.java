@@ -19,12 +19,11 @@ public class Card {
         RED, BLUE, GREEN, NO_COLOR
     }
 
-    public Card( Shape shape, Color color, int alpha, int num, boolean isSelected, int image, int selectedImg) {
+    public Card( Shape shape, Color color, int alpha, int num, int image, int selectedImg) {
         mShape = shape;
         mColor = color;
         mAlpha = alpha;
         mNum = num;
-        mIsSelected = isSelected;
         mImage = image;
         mSelectedImg = selectedImg;
 }
