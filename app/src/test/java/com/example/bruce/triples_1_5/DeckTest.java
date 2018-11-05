@@ -20,12 +20,17 @@ public class DeckTest {
 
     @Test
     public void getNumCardsInDeck() {
-        
-
+        Deck deck = new Deck(81);
+        int expectedValue = 81;
+        int actualValue = deck.getNumCardsInDeck();
+        assertTrue(actualValue == expectedValue);
     }
 
     @Test
     public void getTopCard() {
-
+        Deck deck = new Deck(81);
+        Card expectedValue =  deck.getCard(0);
+        Card actualValue = deck.getTopCard();
+        assertTrue(actualValue.equals(expectedValue));
     }
 }

@@ -10,6 +10,7 @@ public class Deck {
         mOrderedDeck = new Card[numOfCardsInDeck + 1];
         populateOrderedDeckWithCards(numOfCardsInDeck);
         createShuffledDeck();
+        mNumCardsInDeck = numOfCardsInDeck;
     }
 
     /*************************************************************************
@@ -43,6 +44,9 @@ public class Deck {
         return mOrderedDeck[0];
     }
 
+    public Card getCard(int index) {
+        return mShuffledDeck.get(index);
+    }
 
     private void populateOrderedDeckWithCards(int numOfCardsInDeck) {
         mOrderedDeck[0] = new Card(Card.Shape.NO_SHAPE, Card.Color.NO_COLOR, 0, 0,
