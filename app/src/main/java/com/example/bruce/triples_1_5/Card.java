@@ -52,15 +52,15 @@ public class Card {
        mIsSelected = isSelected;
     }
 
-    public boolean getIsSeleceted() {
+    public boolean getIsSelected() {
         return mIsSelected;
     }
 
-    public int getImage() {
+    public int getImageID() {
         return mImage;
     }
 
-    public int getSelectedImg() {
+    public int getSelectedImageID() {
         return mSelectedImg;
     }
 }
