@@ -13,19 +13,20 @@ public class GameModel {
 
 
     GameModel(int numOfCardsInDeck, int level){
-    mNumOfCardsInDeck = numOfCardsInDeck;
-    mLevel = level;
-    mTriplesRemaining = deck.getNumCardsInDeck() / 3;
-    mSelectedCards = new ArrayList<>();
-    mCardOnBoard = new ArrayList<>();
-    mStartTime = System.currentTimeMillis();
-    mScore = 0;
-    mNumOfCardsInDeck = deck.getNumCardsInDeck();
+        deck = new Deck (numOfCardsInDeck);
+        mNumOfCardsInDeck = numOfCardsInDeck;
+        mLevel = level;
+        mTriplesRemaining = numOfCardsInDeck / 3;
+        mSelectedCards = new ArrayList<>();
+        mCardOnBoard = new ArrayList<>();
+        mStartTime = System.currentTimeMillis();
+        mScore = 0;
+        mNumOfCardsInDeck = numOfCardsInDeck;
     }
 
     /*************************************************
-    * Getters and Setters
-    *************************************************/
+     * Getters and Setters
+     *************************************************/
 
     public Card getCardOnBoard(int index) {
         return mCardOnBoard.get(index);
@@ -56,7 +57,7 @@ public class GameModel {
      * Methods that place cards to board
      *************************************************/
     protected void addCardToBoard(){
-        mCardOnBoard.add( deck.getTopCard());
+        mCardOnBoard.add(deck.getTopCard());
     }
 
     protected void replaceCardOnBoard(int index){
@@ -68,23 +69,31 @@ public class GameModel {
      *************************************************/
 
     protected void addSelectedCardIndex(int cardIndex){
-        // to be implemented
+        mSelectedCards.add(cardIndex);
     }
 
-    protected void removeSelectedCardIndex(int cardIndex){
-        // to be implemented
+    protected void removeSelectedCardIndex(int index){
+        mSelectedCards.remove(new Integer(index));
     }
 
     protected void resetSelectedCardIndices(){
-        // to be implemented
-    }
+     int length = mSelectedCards.size();
+        for(int i = length; i > 0; i--) {
+         mSelectedCards.remove(i-1);
+       }
+     }
 
     /*************************************************
      * Scoring
      *************************************************/
     protected int updateScore() {
-        // to be implemented
-        return -1; // temporary placeholder until implementation
+        long duration = System.currentTimeMillis() - mStartTime;
+
+        if (duration > 30000) {
+            duration = 30000;
+        }
+        mScore += 300 - duration / 300;
+        return mScore;
     }
 
     /*************************************************
@@ -92,8 +101,17 @@ public class GameModel {
      *************************************************/
 
     protected boolean isTriple(int firstCard, int secondCard, int thirdCard){
-        // to be implemented
-        return true; // temporary placeholder until implementation
+       boolean shapeIsTriple = ((mCardOnBoard.get(firstCard).getShape().ordinal() + mCardOnBoard.get(secondCard).getShape().ordinal() + mCardOnBoard.get(thirdCard).getShape().ordinal()) % 3 == 0) ? true : false;
+
+       boolean colorIsTriple =((mCardOnBoard.get(firstCard).getColor().ordinal() + mCardOnBoard.get(secondCard).getColor().ordinal() + mCardOnBoard.get(thirdCard).getColor().ordinal()) % 3 == 0) ? true : false;
+
+       boolean alphaIsTriple = ((mCardOnBoard.get(firstCard).getAlpha() + mCardOnBoard.get(secondCard).getAlpha() + mCardOnBoard.get(thirdCard).getAlpha()) % 3 == 0) ? true : false;
+
+       boolean numIsTriple = ((mCardOnBoard.get(firstCard).getNum() + mCardOnBoard.get(secondCard).getNum() + mCardOnBoard.get(thirdCard).getNum()) % 3 == 0) ? true : false;
+
+       boolean isTriple = (shapeIsTriple == colorIsTriple && alphaIsTriple == numIsTriple && shapeIsTriple == alphaIsTriple) ? true : false ;
+
+       return isTriple;
     }
 
     protected boolean playIsPossible(){

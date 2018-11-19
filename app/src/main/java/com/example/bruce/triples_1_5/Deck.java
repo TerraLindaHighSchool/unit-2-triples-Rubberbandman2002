@@ -4,8 +4,9 @@ import java.util.Random;
 public class Deck {
     private Card[] mOrderedDeck;
     private ArrayList<Card> mShuffledDeck = new ArrayList<>();
-    private int mNumCardsInDeck ;
+    private int mNumCardsInDeck;
     private Card mTopCard;
+
     Deck(int numOfCardsInDeck){
         mOrderedDeck = new Card[numOfCardsInDeck + 1];
         populateOrderedDeckWithCards(numOfCardsInDeck);
@@ -34,13 +35,13 @@ public class Deck {
     Getters
     ******************************************************************************/
     public int getNumCardsInDeck() {
-        return mNumCardsInDeck;
+        return mShuffledDeck.size();
     }
 
     public Card getTopCard() {
-        if (mShuffledDeck.size() > 0) {
+        if (mShuffledDeck.size() > 0)
             return mShuffledDeck.remove(0);
-        }
+        else
         return mOrderedDeck[0];
     }
 
